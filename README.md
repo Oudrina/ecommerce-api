@@ -234,6 +234,3 @@ This fixes review issue #3 (no structured error model) from Project 1 — build 
 
 ---
 
-## Explicit non-goals (re-read before adding anything not listed above)
-
-If a feature isn't in the API contract table above, it doesn't belong in this project yet. Write it down as a "future idea" instead of building it now.
