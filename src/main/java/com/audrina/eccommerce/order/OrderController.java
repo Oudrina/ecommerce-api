@@ -31,6 +31,7 @@ public class OrderController {
         return  new ResponseEntity<>( orderService.getOrdersByUser(userId, PageNumber,PageSize), HttpStatus.OK);
     }
 
+    @GetMapping
     public  ResponseEntity<Page<OrderResponse>> getAllOrders(@RequestParam(defaultValue = "0")int PageSize,
                                                              @RequestParam(defaultValue = "10") int PageNumber){
         return  new ResponseEntity<>(orderService.getAllOrders(PageNumber,PageSize), HttpStatus.OK);

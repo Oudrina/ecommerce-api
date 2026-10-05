@@ -37,6 +37,7 @@ public class ProductController {
                         HttpStatus.OK);
     }
 
+    @GetMapping("productPage")
     public ResponseEntity<Page<ProductResponse>> getProductByPage(String category, BigDecimal maxPrice, int pageNumber, int pageSize) {
         return new ResponseEntity<>
                 (productService

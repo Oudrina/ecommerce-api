@@ -9,3 +9,5 @@ HAVING COUNT(*) > 1;
 
 SELECT *
 # FROM flyway_schema_history;
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Oudrina';

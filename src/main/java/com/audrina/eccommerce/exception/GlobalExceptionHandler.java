@@ -129,14 +129,14 @@ public class GlobalExceptionHandler {
     public  ResponseEntity<ErrorResponse> OrderNotFoundException(OrderNotFoundException ex, HttpServletRequest request) {
         ErrorResponse response = new ErrorResponse(
                 LocalDateTime.now(),
-                HttpStatus.CONFLICT.value(),
+                HttpStatus.NOT_FOUND.value(),
                 "ORDER NOT PLACED YET",
                 ex.getMessage(),
                 request.getRequestURI()
         ) ;
 
         return  ResponseEntity
-                .status(HttpStatus.CONFLICT)
+                .status(HttpStatus.NOT_FOUND)
                 .body(response);
 
     }
