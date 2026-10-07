@@ -11,8 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
 
@@ -80,9 +80,11 @@ public class OrderService {
         return orderMapper.toOrderResponse(order);
     }
 
-    public Page<OrderResponse> getAllOrders(int PageNumber, int PageSize) {
+    public Page<OrderResponse> getAllOrders(
+            int pageNumber,
+            int pageSize) {
 
-        Pageable pageable = PageRequest.of(PageNumber, PageSize);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
         return orderRepository
                 .findAll(pageable)
@@ -90,8 +92,10 @@ public class OrderService {
 
     }
 
-    public Page<OrderResponse> getOrdersByUser(Long userId, int PageNumber, int PageSize) {
-        Pageable pageable = PageRequest.of(PageNumber, PageSize);
+    public Page<OrderResponse> getOrdersByUser(Long userId,
+                                             int pageNumber,
+                                              int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         Page<Order> orders = orderRepository.findByUserId(userId, pageable);
 
         return orders.map(orderMapper::toOrderResponse);

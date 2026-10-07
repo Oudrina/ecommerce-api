@@ -31,14 +31,19 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<ProductResponse>> getProduct( @RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "10") int pageSize) {
+    public ResponseEntity<Page<ProductResponse>> getProduct( @RequestParam(defaultValue = "0") int pageNumber,
+                                                             @RequestParam(defaultValue = "10") int pageSize) {
         return new ResponseEntity<>
                 (productService.getProducts(pageNumber, pageSize),
                         HttpStatus.OK);
     }
 
     @GetMapping("productPage")
-    public ResponseEntity<Page<ProductResponse>> getProductByPage(String category, BigDecimal maxPrice, int pageNumber, int pageSize) {
+    public ResponseEntity<Page<ProductResponse>> getProductByPage(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) BigDecimal maxPrice,
+            @RequestParam(defaultValue = "0") int pageNumber,
+            @RequestParam(defaultValue = "10") int pageSize) {
         return new ResponseEntity<>
                 (productService
                         .getAllProducts(category, maxPrice, pageNumber, pageSize)
@@ -46,7 +51,8 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductRequest productRequest) {
+    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id,
+                                                         @Valid @RequestBody ProductRequest productRequest) {
         return new ResponseEntity<>(productService
                 .updateProduct(id, productRequest)
                 , HttpStatus.OK);

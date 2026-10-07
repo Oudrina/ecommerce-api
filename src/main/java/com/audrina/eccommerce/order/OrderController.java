@@ -26,15 +26,15 @@ public class OrderController {
 
     @GetMapping("user/{userId}")
     public ResponseEntity<Page<OrderResponse>> getUserOrders( @PathVariable Long userId,
-                                                             @RequestParam(defaultValue = "0") int PageNumber,
-                                                             @RequestParam(defaultValue = "10")int PageSize){
-        return  new ResponseEntity<>( orderService.getOrdersByUser(userId, PageNumber,PageSize), HttpStatus.OK);
+                                                             @RequestParam(defaultValue = "0") int pageNumber,
+                                                             @RequestParam(defaultValue = "10")int pageSize){
+        return  new ResponseEntity<>( orderService.getOrdersByUser(userId, pageNumber,pageSize), HttpStatus.OK);
     }
 
     @GetMapping
-    public  ResponseEntity<Page<OrderResponse>> getAllOrders(@RequestParam(defaultValue = "0")int PageSize,
-                                                             @RequestParam(defaultValue = "10") int PageNumber){
-        return  new ResponseEntity<>(orderService.getAllOrders(PageNumber,PageSize), HttpStatus.OK);
+    public  ResponseEntity<Page<OrderResponse>> getAllOrders(@RequestParam(defaultValue = "0")int pageSize,
+                                                             @RequestParam(defaultValue = "10") int pageNumber){
+        return  new ResponseEntity<>(orderService.getAllOrders(pageNumber,pageSize), HttpStatus.OK);
     }
 
 
